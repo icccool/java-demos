@@ -1,4 +1,4 @@
-package com.base;
+package com.redis;
 
 /**
  * @Author WANG JI BO

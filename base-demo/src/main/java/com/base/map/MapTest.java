@@ -6,5 +6,7 @@ package com.base.map;
  * @Description
  **/
 public class MapTest {
+    public static void main(String[] args) {
 
+    }
 }

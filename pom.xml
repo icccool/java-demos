@@ -13,6 +13,7 @@
         <module>spring-demo</module>
         <module>base-demo</module>
         <module>redis-demo</module>
+        <module>design-demo</module>
     </modules>
 
     <properties>

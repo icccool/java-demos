@@ -6,6 +6,7 @@ package com.design.patterns.strategypattern.strategy;
  * @Description 锦囊之一 ： 孙人断后，挡住追兵
  **/
 public class BlockEnemy implements IStrategy{
+
     public void operate() {
         System.out.println("孙人断后，挡住追兵");
     }

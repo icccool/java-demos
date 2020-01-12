@@ -10,6 +10,7 @@ import oshi.util.Util;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  *  获得硬件信息
@@ -30,10 +31,13 @@ public class SystemInfoTest {
 
         HardwareAbstractionLayer hal = si.getHardware();
         OperatingSystem os = si.getOperatingSystem();
-
-        System.out.println(os);
+        System.out.println("系统时区==========================================================");
+        System.out.println(TimeZone.getDefault().getID());
 
         System.out.println("系统信息==========================================================");
+        System.out.println(os);
+
+        System.out.println("机器信息==========================================================");
         printComputerSystem(hal.getComputerSystem());
 
         System.out.println("处理器==========================================================");

@@ -1,9 +1,7 @@
 package com.base.queue.blockqueue;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.Arrays;
+import java.util.concurrent.*;
 
 /**
  * @Author WANG JI BO
@@ -20,12 +18,10 @@ public class BlockQueueTest {
 
     public static void main(String[] args) {
         try {
-            BlockingQueue<String> queue = new LinkedBlockingDeque();
-            queue.add("a");
-            queue.add("b");
-            queue.add("c");
+            BlockingQueue<String> queue = new LinkedBlockingDeque(Arrays.asList(new String[]{"a","b","c"}));
 
-            for (int i = 0; i < SYNC_THREADS; i++) {
+
+            for (int i = 0; i < 3; i++) {
                 syncExecutor.submit(new SyncWorker(1, queue));
             }
 
@@ -41,8 +37,10 @@ public class BlockQueueTest {
 
         BlockingQueue<String> queue;
         int type;
+
         SyncWorker() {
         }
+
         SyncWorker(int type, BlockingQueue<String> queue) {
             this.queue = queue;
             this.type = type;
@@ -51,11 +49,18 @@ public class BlockQueueTest {
         @Override
         public void run() {
             try {
-                String str = queue.peek();
-                System.out.println(String.format("str = %s\n", str));
-                Thread.sleep(1000L);
-                if (str != null) {
-                    queue.put(str);
+                while (true) {
+                    String str = queue.poll(1000L, TimeUnit.MILLISECONDS);
+                    if(str == null){
+                        break;
+                    }
+                    long sleepTime = (long) ((Math.random() + 1) * 1000);
+                    Thread.sleep(sleepTime);
+                    System.out.println(String.format("thread-id =%s, str = %s , cost = %s", Thread.currentThread().getId(), str, String.valueOf(sleepTime)));
+                    if (str != null) {
+//                    queue.put(str);
+                    }
+
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

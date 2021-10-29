@@ -21,11 +21,14 @@ public class TimeServer {
                         @Override
                         protected void initChannel(Channel channel) throws Exception {
 
-                            channel.pipeline().addLast();
+                            channel.pipeline().addLast(new TimeServerHandler());
                         }
                     });
 
+            //绑定端口,同步等待成功
             ChannelFuture f = b.bind(port).sync();
+            //等待服务端监听端口关闭
+            f.channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();
             childGroup.shutdownGracefully();
@@ -33,7 +36,12 @@ public class TimeServer {
     }
 
     public static void main(String[] args) {
-        int port = 8088;
+        try {
+            int port = 8033;
+            new TimeServer().bind(port);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-package com.demos.netty.timserver;
+package com.demos.netty.timserver2;
 
 import com.sun.corba.se.internal.CosNaming.BootstrapServer;
 import io.netty.bootstrap.ServerBootstrap;

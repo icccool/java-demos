@@ -1,4 +1,4 @@
-package com.demos.netty.timserver2;
+package com.demos.netty.timserver3;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -16,10 +16,9 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf buf = (ByteBuf) msg;
-        byte[] req = new byte[buf.readableBytes()];
-        buf.readBytes(req);
-        String body = new String(req, "UTF-8");
+
+        //解码器
+        String body = (String) msg;
         System.out.println("the time server receive order : " + body + "; the counter is : " + (++counter));
 
         String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body)

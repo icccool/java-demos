@@ -1,7 +1,9 @@
 package com.base.java8;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -16,6 +18,21 @@ public class List2list {
             return new StockC(e);
         }).collect(Collectors.toList());
         System.out.println(res);
+    }
+
+
+    void transform(){
+//        Map<String,String> map = new HashMap<>();
+//        map.put("1","test1");
+//        map.put("2","test2");
+//        Map<String,String> map2 = new HashMap<>();
+//        map2.put("1","test3");
+//        map2.put("4","test2");
+//        List<Map<String,String>> list2= new ArrayList<>();
+//        list2.add(map);
+//        list2.add(map2);
+//        List<String> list3=Lists.transform(list2,s->s.get("1"));
+//        list3.forEach(s -> System.out.println(s));
     }
 
     static class  BillDetail{

@@ -32,7 +32,9 @@ public class HttpFileServer {
             b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
+                    //HTTP消息解码器
                     ch.pipeline().addLast("http-decoder", new HttpRequestDecoder());
+                    //将多个HTTP转换为单一的FullHttpRequest或FullHttpResponse
                     ch.pipeline().addLast("http-aggregator", new HttpObjectAggregator(65536));
                     // 新增HTTP响应编码器，对HTTP响应消息进行编码
                     ch.pipeline().addLast("http-encoder", new HttpResponseEncoder());

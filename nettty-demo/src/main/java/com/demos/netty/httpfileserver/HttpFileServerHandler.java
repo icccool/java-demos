@@ -99,7 +99,9 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
                 System.out.println("Transfer complete.");
             }
         });
+        //发送结束标识
         ChannelFuture lastContentFuture = ctx.writeAndFlush(LastHttpContent.EMPTY_LAST_CONTENT);
+        //如果非keepLive连接，关闭连接
         if (!isKeepAlive(request)) {
             lastContentFuture.addListener(ChannelFutureListener.CLOSE);
         }

@@ -14,9 +14,11 @@ public class List2list {
         List<BillDetail> list = new ArrayList();
         list.add(new BillDetail(1,"AA"));
         list.add(new BillDetail(1,"BB"));
+
         List<StockC> res= list.stream().map((e)->{
             return new StockC(e);
         }).collect(Collectors.toList());
+
         System.out.println(res);
     }
 

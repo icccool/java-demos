@@ -8,8 +8,6 @@ import java.util.List;
  */
 public class ListPage {
     public static void main(String[] args) {
-
-
         List<String> list = new ArrayList<String>();
         list.add("1");
         list.add("2");
@@ -30,6 +28,5 @@ public class ListPage {
             int to = (i + 1) * pageSize >= list.size() ? list.size() : (i + 1) * pageSize;
             System.out.println(list.subList(from, to));
         }
-
     }
 }
